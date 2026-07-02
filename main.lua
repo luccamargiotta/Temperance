@@ -9,6 +9,12 @@ TEMP_CONFIG.show_consumables = TEMP_CONFIG.show_consumables == nil and false or 
 TEMP_CONFIG.show_jokers = TEMP_CONFIG.show_jokers == nil and true or TEMP_CONFIG.show_jokers
 
 if SMODS and SMODS.current_mod then
+    SMODS.Atlas {
+        key = 'modicon',
+        px = 34,
+        py = 34,
+        path = 'modicon.png'
+    }
     SMODS.current_mod.config_tab = function()
         return {n = G.UIT.ROOT, config = {r = 0.1, align = "cm", padding = 0.1, colour = G.C.BLACK, minw = 8, minh = 6}, nodes = {
             {n = G.UIT.R, config = {align = "cl", padding = 0.1}, nodes = {

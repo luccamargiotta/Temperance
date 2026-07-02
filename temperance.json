@@ -2,7 +2,7 @@
   "id": "temperance",
   "name": "Temperance",
   "author": ["fives"],
-  "description": "Shows the total sell value of all jokers underneath the consumables area.",
+  "description": "Shows the total sell value of all jokers next to the jokers and/or consumables counter.",
   "prefix": "temp",
   "main_file": "main.lua",
   "priority": 10,

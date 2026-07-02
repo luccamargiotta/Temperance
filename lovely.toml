@@ -18,7 +18,7 @@ target = "cardarea.lua"
 pattern = "function CardArea:draw()"
 position = "after"
 payload = '''
-if self == G.consumeables then
+if self == G.consumeables or self == G.jokers then
     local _val = 0
     if G.jokers then
         for i = 1, #G.jokers.cards do
@@ -37,7 +37,18 @@ target = "cardarea.lua"
 pattern = "{n=G.UIT.T, config={ref_table = self.config, ref_value = 'card_count', scale = 0.3, colour = G.C.WHITE}},"
 position = "before"
 payload = '''
-self == G.consumeables and {n=G.UIT.T, config={ref_table = temp_sell, ref_value = 'label', scale = 0.3, colour = G.C.WHITE}} or nil,
-self == G.consumeables and {n=G.UIT.B, config={w = 0.1,h=0.1}} or nil,
+self == G.consumeables and TEMP_CONFIG and TEMP_CONFIG.show_consumables and {n=G.UIT.T, config={ref_table = temp_sell, ref_value = 'label', scale = 0.3, colour = G.C.WHITE}} or nil,
+self == G.consumeables and TEMP_CONFIG and TEMP_CONFIG.show_consumables and {n=G.UIT.B, config={w = 0.1,h=0.1}} or nil,
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "cardarea.lua"
+pattern = "{n=G.UIT.B, config={w = 0.1,h=0.1}}"
+position = "at"
+payload = '''
+{n=G.UIT.B, config={w = 0.1,h=0.1}},
+self == G.jokers and TEMP_CONFIG and TEMP_CONFIG.show_jokers and {n=G.UIT.T, config={ref_table = temp_sell, ref_value = 'label', scale = 0.3, colour = G.C.WHITE}} or nil,
 '''
 match_indent = true
